@@ -1,5 +1,5 @@
 # Этап 1: сборка фронтенда
-FROM node:18-alpine AS frontend-builder
+FROM node:20-alpine AS frontend-builder
 
 WORKDIR /front
 # Копируем package.json из вложенной папки
@@ -25,4 +25,4 @@ COPY . .
 COPY --from=frontend-builder /front/dist /app/static
 
 EXPOSE 8000
-CMD ["python", "main.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -2,4 +2,5 @@ fastapi
 uvicorn
 sqlalchemy
 redis
-
+tenacity
+aiofiles

@@ -1,0 +1,5 @@
+requests
+psutil
+tenacity
+colorama
+python-dotenv

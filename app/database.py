@@ -6,7 +6,7 @@ from typing import Optional, Dict, Any, List
 import os
 
 # ========== НАСТРОЙКИ ==========
-DATA_DIR = "test.db"
+DATA_DIR = "./data"
 os.makedirs(DATA_DIR, exist_ok=True)
 DATABASE_URL = f"sqlite:///{DATA_DIR}/task_system.db"
 

@@ -18,16 +18,20 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Agent_Porksheyan")
 # Папка, куда будет скопирована сборка фронтенда (см. Dockerfile)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
 
 @app.get("/")
 async def serve_frontend():
     return FileResponse("static/index.html")
 
+@app.get("/grandpa.png")
+async def grandpa():
+    return FileResponse("static/grandpa.png")
+
 from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

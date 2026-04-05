@@ -1,10 +1,26 @@
-version: '3.8'
-
 services:
+  redis:
+    image: redis:7-alpine
+    restart: always
+
   app:
     build: .
     ports:
       - "8000:8000"
     volumes:
       - ./data:/app/data
-  
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+    restart: always
+
+  agent:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile
+    depends_on:
+      - app
+    environment:
+      - API_URL=http://app:8000
+    restart: always
