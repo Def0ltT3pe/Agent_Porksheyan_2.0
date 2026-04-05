@@ -293,9 +293,10 @@ docker-compose up --build
 
 ## 👥 Команда
 
-|------|--------|
-Ичёткин Никита | https://t.me/@NokJoy
-Лысота Дмитрий | https://t.me/@SVarG02
-Махно Елизавета | https://t.me/@Liza_M520
-Колесников Ярослав | https://t.me/@OmegaPivo
-Султанов Руслан | https://t.me/@Syl_Rus
+| Участник | Контакт |
+|---------|---------|
+| Ичёткин Никита | [@NokJoy](https://t.me/NokJoy) |
+| Лысота Дмитрий | [@SVarG02](https://t.me/SVarG02) |
+| Махно Елизавета | [@Liza_M520](https://t.me/Liza_M520) |
+| Колесников Ярослав | [@OmegaPivo](https://t.me/OmegaPivo) |
+| Султанов Руслан | [@Syl_Rus](https://t.me/Syl_Rus) |
