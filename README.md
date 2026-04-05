@@ -29,7 +29,7 @@ Agent → FastAPI → Database
 | Компонент | Описание |
 |----------|--------|
 | FastAPI сервер | FastAPI и логика управления |
-| БД (SQLite/PostgreSQL) | Хранение состояния |
+| БД (SQAlchemy) | Хранение состояния |
 | Redis (опционально) | Уведомления о задачах |
 | Agent (Python) | Исполнитель задач |
 
@@ -72,7 +72,6 @@ Agent → FastAPI → Database
 - FastAPI
 - SQLAlchemy
 - Redis (опционально)
-- SQLite / PostgreSQL
 - Docker
 - python-dotenv
 - tenacity
@@ -276,7 +275,7 @@ docker-compose up --build
 - Веб-интерфейс  
 - Cron-задачи  
 - Масштабирование  
-- PostgreSQL для production  
+- SQLAlchemy для production  
 - Метрики и алертинг  
 
 ---
