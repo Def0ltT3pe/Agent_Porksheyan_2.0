@@ -148,7 +148,7 @@ Agent_Porksheyan/
 ### 1. Клонирование
 
 ```bash
-git clone <repo-url>
+git clone <https://github.com/Def0ltT3pe/Agent_Porksheyan_2.0>
 cd project
 ```
 
