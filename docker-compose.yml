@@ -1,15 +1,10 @@
-services:
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-    restart: always
+version: '3.8'
 
-  backend:
+services:
+  app:
     build: .
     ports:
       - "8000:8000"
-    depends_on:
-      - redis
-    environment:
-      - REDIS_HOST=redis
+    volumes:
+      - ./data:/app/data
+  

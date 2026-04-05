@@ -55,15 +55,14 @@ def run_safe_command(command: str, timeout: int = 30, shell: bool = True) -> Dic
         return result
 
     try:
-        # Выполнение команды
+        # Выполнение команды (без указания executable, чтобы работало на всех ОС)
         if shell:
             process = subprocess.run(
                 command,
                 shell=True,
                 capture_output=True,
                 text=True,
-                timeout=timeout,
-                executable="/bin/bash" if not subprocess.__name__ == 'nt' else None
+                timeout=timeout
             )
         else:
             args = shlex.split(command)

@@ -13,7 +13,7 @@ DATABASE_URL = f"sqlite:///{DATA_DIR}/task_system.db"
 engine = create_engine(
     DATABASE_URL,
     connect_args={"check_same_thread": False},
-    echo=False  # True для отладки SQL
+    echo=False
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -21,51 +21,49 @@ Base = declarative_base()
 
 # ========== МОДЕЛИ ==========
 class Agent(Base):
-    """Модель агента (исполнителя задач)"""
     __tablename__ = "agents"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String, unique=True, nullable=False, index=True)
     token = Column(String, unique=True, nullable=False, index=True)
-    status = Column(String, default="offline")  # online, offline, busy
+    status = Column(String, default="offline")
     last_seen = Column(DateTime, nullable=True)
-
-    # Дополнительные поля для фронтенда
     description = Column(String, nullable=True)
-    tags = Column(JSON, default=[])  # Теги для группировки
+    tags = Column(JSON, default=[])
 
 
 class Task(Base):
-    """Модель задачи"""
     __tablename__ = "tasks"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     agent_id = Column(Integer, nullable=False, index=True)
     type = Column(String, nullable=False, index=True)
     payload = Column(JSON, default={})
-    status = Column(String, default="pending", index=True)  # pending, running, completed, failed, cancelled
+    status = Column(String, default="pending", index=True)
 
     created_at = Column(DateTime, default=datetime.utcnow)
     started_at = Column(DateTime, nullable=True)
     finished_at = Column(DateTime, nullable=True)
 
-    result = Column(Text, nullable=True)
+    result = Column(JSON, nullable=True)
     logs = Column(Text, nullable=True)
 
-    # Дополнительные поля
-    priority = Column(Integer, default=0)  # 0-10, где 10 - наивысший
+    priority = Column(Integer, default=0)
     retry_count = Column(Integer, default=0)
     max_retries = Column(Integer, default=3)
 
 
 # ========== DEPENDENCY ==========
 def get_db() -> Session:
-    """Dependency для FastAPI (бекенд)"""
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
+
+# ... (функции create_agent, get_agent, create_task и т.д. остаются те же)
+# Я не буду дублировать их для краткости, они у вас уже есть.
 
 
 # ========== CRUD AGENTS ==========
